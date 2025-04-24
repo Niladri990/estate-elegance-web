@@ -1,20 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Bed, Bath, ArrowRight, BadgeIndianRupee } from 'lucide-react';
+import { MapPin, Bed, Bath, ArrowRight, BadgeIndianRupee, Trash2 } from 'lucide-react';
 import { Property } from '@/data/properties';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 interface PropertyCardProps {
   property: Property;
+  onRemove?: (id: string) => void;
 }
 
-const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
+const PropertyCard: React.FC<PropertyCardProps> = ({ property, onRemove }) => {
   const formatPrice = (price: number) => {
-    if (property.status === "For Rent") {
-      return `₹${(price * 83).toLocaleString()}/mo`;
+    const priceInINR = price;
+    if (priceInINR >= 10000000) {
+      return `₹${(priceInINR / 10000000).toFixed(2)} Cr`;
     }
-    return `₹${(price * 83).toLocaleString()}`;
+    if (priceInINR >= 100000) {
+      return `₹${(priceInINR / 100000).toFixed(2)} Lac`;
+    }
+    return `₹${priceInINR.toLocaleString()}`;
   };
 
   const getStatusColor = (status: string) => {
@@ -41,6 +47,17 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         <Badge className={`absolute top-4 left-4 ${getStatusColor(property.status)}`}>
           {property.status}
         </Badge>
+        {onRemove && (
+          <Button
+            variant="destructive"
+            size="icon"
+            className="absolute top-4 right-4"
+            onClick={() => onRemove(property.id)}
+          >
+            <Trash2 className="h-4 w-4" />
+            <span className="sr-only">Remove property</span>
+          </Button>
+        )}
       </div>
       
       <CardContent className="pt-6">

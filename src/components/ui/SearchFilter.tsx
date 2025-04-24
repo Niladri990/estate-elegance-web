@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Search } from 'lucide-react';
+import { Search, Delete } from 'lucide-react';
+import { useTheme } from '@/hooks/use-theme';
 
 interface SearchFilterProps {
   onFilterChange: (filters: {
@@ -11,9 +11,11 @@ interface SearchFilterProps {
     maxPrice?: number;
     bedrooms?: number;
   }) => void;
+  onRemoveProperty?: (id: string) => void;
 }
 
-const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange }) => {
+const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange, onRemoveProperty }) => {
+  const { theme, setTheme } = useTheme();
   const [filters, setFilters] = useState({
     type: '',
     status: '',
@@ -26,12 +28,10 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange }) => {
     const { name, value } = e.target;
     let parsedValue: string | number | undefined = value;
     
-    // Parse numeric values
     if (['minPrice', 'maxPrice', 'bedrooms'].includes(name) && value) {
       parsedValue = parseInt(value, 10);
     }
     
-    // If empty string, set to undefined for numeric fields
     if (['minPrice', 'maxPrice', 'bedrooms'].includes(name) && value === '') {
       parsedValue = undefined;
     }
@@ -45,6 +45,10 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onFilterChange(filters);
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -91,11 +95,11 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange }) => {
               className="w-full border-gray-200 rounded-md focus:ring-estate-secondary focus:border-estate-secondary"
             >
               <option value="">No Min</option>
-              <option value="100000">$100,000</option>
-              <option value="200000">$200,000</option>
-              <option value="300000">$300,000</option>
-              <option value="500000">$500,000</option>
-              <option value="1000000">$1,000,000</option>
+              <option value="8300000">₹83,00,000</option>
+              <option value="16600000">₹1.66 Cr</option>
+              <option value="24900000">₹2.49 Cr</option>
+              <option value="41500000">₹4.15 Cr</option>
+              <option value="83000000">₹8.30 Cr</option>
             </select>
           </div>
           
@@ -108,11 +112,11 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange }) => {
               className="w-full border-gray-200 rounded-md focus:ring-estate-secondary focus:border-estate-secondary"
             >
               <option value="">No Max</option>
-              <option value="300000">$300,000</option>
-              <option value="500000">$500,000</option>
-              <option value="750000">$750,000</option>
-              <option value="1000000">$1,000,000</option>
-              <option value="2000000">$2,000,000+</option>
+              <option value="24900000">₹2.49 Cr</option>
+              <option value="41500000">₹4.15 Cr</option>
+              <option value="62250000">₹6.22 Cr</option>
+              <option value="83000000">₹8.30 Cr</option>
+              <option value="166000000">₹16.60 Cr+</option>
             </select>
           </div>
           
@@ -133,9 +137,18 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange }) => {
             </select>
           </div>
           
-          <div className="col-span-1 md:col-span-2 lg:col-span-5 mt-2">
-            <Button type="submit" className="w-full bg-estate-primary hover:bg-estate-secondary">
+          <div className="col-span-1 md:col-span-2 lg:col-span-5 mt-2 flex gap-2">
+            <Button type="submit" className="flex-1 bg-estate-primary hover:bg-estate-secondary">
               <Search className="mr-2 h-4 w-4" /> Search Properties
+            </Button>
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={toggleTheme}
+              className="px-4"
+            >
+              <span className="sr-only">Toggle theme</span>
+              {theme === 'dark' ? '🌙' : '☀️'}
             </Button>
           </div>
         </div>

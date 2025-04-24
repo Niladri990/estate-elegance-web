@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer';
 import PropertyCard from '@/components/property/PropertyCard';
 import SearchFilter from '@/components/ui/SearchFilter';
 import { filterProperties, properties } from '@/data/properties';
+import { toast } from '@/hooks/use-toast';
 
 const PropertiesPage = () => {
   const [filteredProperties, setFilteredProperties] = useState(properties);
@@ -18,6 +19,14 @@ const PropertiesPage = () => {
   }) => {
     const results = filterProperties(filters);
     setFilteredProperties(results);
+  };
+
+  const handleRemoveProperty = (id: string) => {
+    setFilteredProperties(prev => prev.filter(property => property.id !== id));
+    toast({
+      title: "Property removed",
+      description: "The property has been removed from the listing."
+    });
   };
 
   return (
@@ -37,7 +46,10 @@ const PropertiesPage = () => {
         {/* Properties Section */}
         <section className="section-padding">
           <div className="container-custom">
-            <SearchFilter onFilterChange={handleFilterChange} />
+            <SearchFilter 
+              onFilterChange={handleFilterChange} 
+              onRemoveProperty={handleRemoveProperty}
+            />
             
             <div className="mb-6">
               <p className="text-gray-600">
@@ -48,7 +60,11 @@ const PropertiesPage = () => {
             {filteredProperties.length > 0 ? (
               <div className="property-grid">
                 {filteredProperties.map(property => (
-                  <PropertyCard key={property.id} property={property} />
+                  <PropertyCard 
+                    key={property.id} 
+                    property={property}
+                    onRemove={handleRemoveProperty} 
+                  />
                 ))}
               </div>
             ) : (
