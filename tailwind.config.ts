@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,13 +62,23 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Real estate specific colors
 				estate: {
 					primary: "#2C3E50",
 					secondary: "#3498DB",
 					accent: "#F39C12",
 					light: "#ECF0F1",
 					dark: "#2C3E50",
+				},
+				sn: {
+					primary: '#9b87f5',
+					secondary: '#7E69AB',
+					tertiary: '#6E59A5',
+					dark: '#1A1F2C',
+					light: '#D6BCFA',
+					vivid: '#8B5CF6',
+					softgray: '#F1F0FB',
+					coolgray: '#aaadb0',
+					neutralgray: '#8E9196',
 				}
 			},
 			borderRadius: {

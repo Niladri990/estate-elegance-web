@@ -1,30 +1,30 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Home, Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-estate-dark text-white">
+    <footer className="bg-[#1A1F2C] text-white">
       <div className="container-custom py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-serif font-semibold mb-4">EstateElegance</h3>
-            <p className="text-gray-300 mb-4">
-              Your trusted partner in finding the perfect property. We specialize in luxury homes, commercial properties, and investment opportunities.
+            <Logo />
+            <p className="text-gray-300 mb-4 mt-4">
+              Your trusted partner in urban development and real estate solutions.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-estate-accent transition-colors">
+              <a href="#" className="text-white hover:text-[#9b87f5] transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-white hover:text-estate-accent transition-colors">
+              <a href="#" className="text-white hover:text-[#9b87f5] transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-white hover:text-estate-accent transition-colors">
+              <a href="#" className="text-white hover:text-[#9b87f5] transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-white hover:text-estate-accent transition-colors">
+              <a href="#" className="text-white hover:text-[#9b87f5] transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -106,9 +106,9 @@ const Footer = () => {
       </div>
 
       {/* Bottom Footer */}
-      <div className="bg-estate-primary/80 py-4">
+      <div className="bg-[#1A1F2C]/80 py-4">
         <div className="container-custom text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} EstateElegance. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} S N Urban Development. All rights reserved.</p>
         </div>
       </div>
     </footer>
