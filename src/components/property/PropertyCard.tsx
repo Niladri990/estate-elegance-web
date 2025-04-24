@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Bed, Bath, ArrowRight, BadgeIndianRupee, Trash2 } from 'lucide-react';
@@ -68,11 +69,11 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property, onRemove }) => {
         </div>
         
         <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center text-estate-primary font-semibold text-lg">
+          <div className="flex items-center text-sn-primary font-semibold text-lg">
             <BadgeIndianRupee size={16} className="mr-1" />
             {formatPrice(property.price)}
           </div>
-          <Badge variant="outline" className="text-estate-secondary border-estate-secondary">
+          <Badge variant="outline" className="text-sn-secondary border-sn-secondary">
             {property.type}
           </Badge>
         </div>

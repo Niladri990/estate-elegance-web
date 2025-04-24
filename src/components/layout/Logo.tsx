@@ -26,13 +26,14 @@ const Logo = () => {
           fontWeight="bold" 
           fontSize="40" 
           fill="white"
+          className="font-serif"
         >
           SN
         </text>
       </svg>
       <div className="flex flex-col">
-        <span className="text-xl font-bold text-[#1A1F2C]">S N</span>
-        <span className="text-sm text-[#8E9196]">Urban Development</span>
+        <span className="text-xl font-serif font-bold text-sn-dark tracking-wide">S N</span>
+        <span className="text-sm text-sn-neutralgray font-medium">Urban Development</span>
       </div>
     </div>
   );

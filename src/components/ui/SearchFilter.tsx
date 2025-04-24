@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Search, Delete } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useTheme } from '@/hooks/use-theme';
 
 interface SearchFilterProps {
@@ -92,14 +92,15 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange, onRemovePro
               name="minPrice"
               value={filters.minPrice?.toString() || ''}
               onChange={handleChange}
-              className="w-full border-gray-200 rounded-md focus:ring-estate-secondary focus:border-estate-secondary"
+              className="w-full border-gray-200 rounded-md focus:ring-sn-primary focus:border-sn-primary"
             >
               <option value="">No Min</option>
-              <option value="8300000">₹83,00,000</option>
-              <option value="16600000">₹1.66 Cr</option>
-              <option value="24900000">₹2.49 Cr</option>
-              <option value="41500000">₹4.15 Cr</option>
-              <option value="83000000">₹8.30 Cr</option>
+              <option value="1000000">₹10 Lakhs</option>
+              <option value="2500000">₹25 Lakhs</option>
+              <option value="5000000">₹50 Lakhs</option>
+              <option value="10000000">₹1 Crore</option>
+              <option value="20000000">₹2 Crores</option>
+              <option value="50000000">₹5 Crores</option>
             </select>
           </div>
           
@@ -109,14 +110,15 @@ const SearchFilter: React.FC<SearchFilterProps> = ({ onFilterChange, onRemovePro
               name="maxPrice"
               value={filters.maxPrice?.toString() || ''}
               onChange={handleChange}
-              className="w-full border-gray-200 rounded-md focus:ring-estate-secondary focus:border-estate-secondary"
+              className="w-full border-gray-200 rounded-md focus:ring-sn-primary focus:border-sn-primary"
             >
               <option value="">No Max</option>
-              <option value="24900000">₹2.49 Cr</option>
-              <option value="41500000">₹4.15 Cr</option>
-              <option value="62250000">₹6.22 Cr</option>
-              <option value="83000000">₹8.30 Cr</option>
-              <option value="166000000">₹16.60 Cr+</option>
+              <option value="2500000">₹25 Lakhs</option>
+              <option value="5000000">₹50 Lakhs</option>
+              <option value="10000000">₹1 Crore</option>
+              <option value="20000000">₹2 Crores</option>
+              <option value="50000000">₹5 Crores</option>
+              <option value="100000000">₹10 Crores</option>
             </select>
           </div>
           
