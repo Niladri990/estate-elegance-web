@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Bed, Bath, ArrowRight } from 'lucide-react';
+import { MapPin, Bed, Bath, ArrowRight, BadgeIndianRupee } from 'lucide-react';
 import { Property } from '@/data/properties';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,9 +12,9 @@ interface PropertyCardProps {
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   const formatPrice = (price: number) => {
     if (property.status === "For Rent") {
-      return `$${price.toLocaleString()}/mo`;
+      return `₹${(price * 83).toLocaleString()}/mo`;
     }
-    return `$${price.toLocaleString()}`;
+    return `₹${(price * 83).toLocaleString()}`;
   };
 
   const getStatusColor = (status: string) => {
@@ -52,9 +51,10 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         </div>
         
         <div className="flex justify-between items-center mb-4">
-          <p className="text-estate-primary font-semibold text-lg">
+          <div className="flex items-center text-estate-primary font-semibold text-lg">
+            <BadgeIndianRupee size={16} className="mr-1" />
             {formatPrice(property.price)}
-          </p>
+          </div>
           <Badge variant="outline" className="text-estate-secondary border-estate-secondary">
             {property.type}
           </Badge>
